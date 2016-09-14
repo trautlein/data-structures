@@ -17,14 +17,20 @@ var Queue = function() {
     if (counter > 0) {
       var dequeued = storage[removed];
       delete storage[removed];
-
-      counter--; 
+      removed++;
       return dequeued;
     }
   };
 
   someInstance.size = function() {
-    return counter;
+    // return counter - removed + 1;
+    var counter2 = 0;
+    for (var key in storage) {
+      if (storage.hasOwnProperty(key)) {
+        counter2++;
+      }
+    }
+    return counter2;
   };
 
   return someInstance;
