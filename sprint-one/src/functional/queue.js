@@ -23,14 +23,10 @@ var Queue = function() {
   };
 
   someInstance.size = function() {
-    // return counter - removed + 1;
-    var counter2 = 0;
-    for (var key in storage) {
-      if (storage.hasOwnProperty(key)) {
-        counter2++;
-      }
+    if ( (counter - removed + 1) < 0) {
+      return 0;
     }
-    return counter2;
+    return counter - removed + 1;
   };
 
   return someInstance;
