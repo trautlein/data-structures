@@ -5,7 +5,7 @@ var Queue = function(enqueue, dequeue, size) {
   var newQueue = {};
 
   newQueue.counter = 0;
-  newQueue.remove = 1;
+  newQueue.removed = 1;
   newQueue.enqueue = enqueue;
   newQueue.dequeue = dequeue;
   newQueue.size = size;
@@ -19,7 +19,10 @@ var queueMethods = {};
 
 
 queueMethods.size = function () {
-  return this.counter;
+  if ((this.counter - this.removed + 1) < 0) {
+    return 0;
+  }
+  return this.counter - this.removed + 1;
 };
 
 queueMethods.enqueue = function (value) {
@@ -29,9 +32,9 @@ queueMethods.enqueue = function (value) {
 
 queueMethods.dequeue = function () {
   if (this.counter > 0) {
-    var popped = this[this.counter];
-    delete this[this.counter];
-    this.counter--;
+    var popped = this[this.removed];
+    delete this[this.removed];
+    this.removed++;
     return popped;
   }
 };
