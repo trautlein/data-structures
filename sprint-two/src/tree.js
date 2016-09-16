@@ -19,19 +19,33 @@ treeMethods.addChild = function(value) {
 
 treeMethods.contains = function(target) {
 
-  var currentTree = this;
-
-  var recurse = function(currentTree) {
-    if (currentTree.value === target) {
-      return true;
-    } else {
-      for (var i = 0; i < currentTree.children.length; i++) {
-        return recurse(currentTree.children[i]);
+  var iterate = function (currentNode) {
+    var children = currentNode.children;
+    for (var i = 0; i < children.length; i++) {
+      if (children[i].children.length > 0) {
+        if (children[i].value === target) {
+          return true;
+        }
+        var iterationBool = iterate(children[i]);
+        if (iterationBool) {
+          return true;
+        }
+      } else {
+        if (children[i].value === target) {
+          return true;
+        }
       }
     }
+    return false;
   };
 
-  return recurse(currentTree);
+  var parentNode = this; 
+
+  if (parentNode.value === target) {
+    return true; 
+  }
+
+  return iterate(parentNode);
 
 };
 
