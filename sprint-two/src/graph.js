@@ -64,19 +64,10 @@ Graph.prototype.removeEdge = function(fromNode, toNode) {
 
 // Pass in a callback which will be executed on each node of the graph.
 Graph.prototype.forEachNode = function(cb) {
-  // for (var node in this) {
-  //   for (var i = 0; i < this[node].length; i++) {
-  //     cb(this[node][i]);
-  //   }
-  // }
-  var arr = [];
   for (var key in this) {
     if (this.hasOwnProperty(key)) {
-      arr.push(key);
+      cb(key);
     }
-  }
-  for (var i = 0; i < arr.length; i++) {
-    cb(arr[i]);
   }
 };
 
