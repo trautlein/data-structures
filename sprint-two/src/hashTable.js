@@ -1,17 +1,16 @@
 var HashTable = function() {
   this._limit = 8;
   this._storage = LimitedArray(this._limit);
-  for (var z = 0; z < this._limit; z++) {
-    this._storage.set(z, []);
-  }
-
 };
 
 HashTable.prototype.insert = function(k, v) {
   var index = getIndexBelowMaxForKey(k, this._limit);
-  var tuples = this._storage.get(index);
-
-  this._storage.set(index, tuples.concat([k, v]));
+  if (this._storage.get(index) !== undefined) {
+    this._storage.get(index).push([k, v]); 
+  } else {
+    var innerArr = [[k, v]]; 
+    this._storage.set(index, innerArr);
+  }
 };
 
 HashTable.prototype.retrieve = function(k) {
