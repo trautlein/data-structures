@@ -9,20 +9,6 @@ var BinarySearchTree = function(root) {
 var bstMethods = {};
 
 bstMethods.insert = function(value) {
-  // if (this.right === undefined && this.left === undefined) {
-  //   if (this.value > value) {
-  //     this.left = BinarySearchTree(value);
-  //   } else {
-  //     this.right = BinarySearchTree(value);
-  //   }
-  // } else {
-  //   if (this.value > value) {
-  //     this.left.insert(value);
-  //   } else {
-  //     this.right.insert(value);
-  //   }
-  // }
-
   if (this.value > value) {
     if (this.left === undefined) {
       this.left = BinarySearchTree(value);
