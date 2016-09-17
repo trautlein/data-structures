@@ -20,7 +20,7 @@ Graph.prototype.removeNode = function(node) {
   var edgesToRemove = this[node];
   for (var i = 0; i < edgesToRemove.length; i++) {
     var currentNode = this[edgesToRemove[i]];
-    for (var j = 0; j < this[edgesToRemove].length; j++) {
+    for (var j = 0; j < currentNode.length; j++) {
       if (currentNode[j] === node) {
         this[edgesToRemove[i]] = currentNode.slice(0, j) + currentNode.slice(j);
         break;    
